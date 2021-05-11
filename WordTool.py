@@ -6,6 +6,7 @@ import time
 
 from math import log
 from tqdm import tqdm
+from dict import load_dict
 
 
 
@@ -282,9 +283,12 @@ class WordTool():
             更新self.data为展示的词表
         """
         data=[]
+        if user_dict is not None:
+            ud=load_dict(user_dict)
+
         for word,info in self.candidates.items():
             if user_dict is not None:
-                if word in user_dict:
+                if word in ud:
                     continue
             f=info['freq']
             el=info['entropy_left']
